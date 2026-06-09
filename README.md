@@ -198,7 +198,7 @@ echo "Ingress IP: $INGRESS_IP"
 
 #### GitHub Actions
 
-1. Моздание конфигураций для деплоя
+1. Создание конфигураций для деплоя
 - terraform.yml  # CI/CD для Terraform
 - ci-cd.yml   # CI/CD для app
 
