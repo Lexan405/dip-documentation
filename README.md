@@ -44,24 +44,6 @@ terraform apply -auto-approve
 - Статический ключ доступа (access_key + secret_key)
 - S3 бакет dip-tf-state-{folder_id} для хранения Terraform state
 
-#### Структура репозитория инфраструктуры
-
-dip-terraform-infra/
-├── iam/                    # Модуль IAM
-│   ├── main.tf            # Сервисный аккаунт, бакет, ключи
-│   ├── variables.tf       # Переменные
-│   ├── outputs.tf         # Выходные значения
-│   └── terraform.tfvars   # Значения переменных
-├── infra/                  # Модуль инфраструктуры
-│   ├── main.tf            # Kubernetes, Registry, VPC
-│   ├── variables.tf       # Переменные
-│   ├── outputs.tf         # Выходные значения
-│   ├── backend.conf       # Конфигурация S3 backend
-│   └── terraform.tfvars   # Значения переменных
-── .github/
-    └── workflows/
-        └── terraform.yml  # CI/CD для Terraform
-
 ### Развертывание основной инфраструктуры
 
 #### Инициализация с remote backend 
@@ -99,22 +81,13 @@ terraform apply -auto-approve
 
 ### Инфраструктура:
 
-![1](screnshot/1.png)
+![1](screenshot/1.png)
 
-![2](screnshot/2.png)
+![2](screenshot/2.png)
 
 ---
 
 ### Этап 3 - Создание тестового приложения
-
-#### Структура репозитория приложения
-
-dip-test-app/
-├── index.html           # Тестовая веб-страница
-├── Dockerfile          # Инструкция для сборки образа
-└── .github/
-    └── workflows/
-        └── ci-cd.yml   # CI/CD для app
 
 ### Сборка и Push образа в Container Registry
 
@@ -142,23 +115,11 @@ docker push cr.yandex/$REGISTRY_ID/dip-app:1.0.0
 
 ### Добавленное приложение в Container Registry:
 
-![3](screnshot/3.png)
+![3](screenshot/3.png)
 
 ---
 
 ### Этап 4 - Подготовка системы мониторинга и деплой приложения
-
-#### Структура Kubernetes манифестов
-
-k8s-manifests/
-├── app/
-│   ├── deployment.yaml     # Деплой приложения
-│   └── service.yaml        # Сервис для доступа
-├── ingress/
-│   ├── app-ingress.yaml    # Ingress для приложения
-│   └── grafana-ingress.yaml # Ingress для Grafana
-└── monitoring/
-    └── values.yaml         # Конфигурация Prometheus/Grafana
 
 #### Добавление репозиториев
 
@@ -210,8 +171,8 @@ echo "Ingress IP: $INGRESS_IP"
 
 #### Добавление IP в файл hosts (если работа через WSL терминал)
 
-<INGRESS_IP>  <IP-адреес> app.dip.local
-<INGRESS_IP>  <IP-адреес> grafana.dip.local
+* <INGRESS_IP>  <IP-адреес> app.dip.local
+* <INGRESS_IP>  <IP-адреес> grafana.dip.local
 
 ### Ссылка на репозитории:
 
@@ -219,17 +180,17 @@ echo "Ingress IP: $INGRESS_IP"
 
 ### Мониторинг:
 
-![4_1](screnshot/4_1.png)
+![4_1](screenshot/4_1.png)
 
-![4_2](screnshot/4_2.png)
+![4_2](screenshot/4_2.png)
 
 ### Деплой инфраструктуры:
 
-![4_3](screnshot/4_3.png)
+![4_3](screenshot/4_3.png)
 
 ### Длоступ к приложению:
 
-![4_4](screnshot/4_3.png)
+![4_4](screenshot/4_3.png)
 
 ---
 
@@ -249,8 +210,8 @@ echo "Ingress IP: $INGRESS_IP"
 
 ### Деплой приложения:
 
-![5](screnshot/5.png)
+![5](screenshot/5.png)
 
 ### Проверка деплоя в Container Registry:
 
-![5_1](screnshot/5_1.png)
+![5_1](screenshot/5_1.png)
