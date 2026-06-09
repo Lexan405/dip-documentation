@@ -190,7 +190,7 @@ echo "Ingress IP: $INGRESS_IP"
 
 ### Длоступ к приложению:
 
-![4_4](screenshot/4_3.png)
+![4_4](screenshot/4_4.png)
 
 ---
 
