@@ -169,7 +169,7 @@ INGRESS_IP=$(kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpa
 echo "Ingress IP: $INGRESS_IP"
 ```
 
-#### Добавление IP в файл hosts (если работа через WSL терминал)
+#### Добавление IP в файл hosts
 
 * <INGRESS_IP>  <IP-адреес> app.dip.local
 * <INGRESS_IP>  <IP-адреес> grafana.dip.local
